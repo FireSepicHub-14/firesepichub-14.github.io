@@ -18,11 +18,13 @@ JapanesePage<br>
 ┣━ ==Home== <-- 今ココ/This Page<br>
 ┣━ ==ルール==<br>
 ┃  ┣━ [SepicServer Group利用規約・免責事項](ja/rule/SepicServerGroup_ToU.md)<br>
+┃  ┣━ [SNS配信いついて](ja/rule/sns_streaming.md)<br>
+┃  ┣━ [宣伝行為について](ja/rule/AdvertisingPolicy.md)<br>
 ┃  ┗━ [使用可能McMods](ja/rule/Approved-mods.md)<br>
 ┃<br>
 ┣━ ==Sepic Minecraft鯖==<br>
 ┃  ┣━ [サーバーアドレス](ja/mc_svr/ServerAddress.md)<br>
 ┃  ┗━ [推奨構成](ja/mc_svr/RecommendedConfiguration.md)<br>
-┗━ SNS配信者へ <-- Comming soon...<br>
+
 
 
