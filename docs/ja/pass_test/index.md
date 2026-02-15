@@ -1,5 +1,5 @@
 ---
-password: testpage
+password: !ENV MY_PAGE_PASSWORD
 ---
 
 # このカテゴリーは？
