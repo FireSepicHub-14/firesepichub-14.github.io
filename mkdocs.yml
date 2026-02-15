@@ -1,0 +1,114 @@
+site_name: SepicServer Docs
+site_url: http://localhost/
+strict: false
+copyright: Copyright &copy; 2021 - 2026 sou@SepicServer
+
+theme:
+  name: material
+
+  logo: img/logo.png
+  favicon: img/favicon.png
+
+  font:
+    text: Kosugi
+    code: Inconsolata
+
+  palette:
+  - scheme: default
+    primary: pink
+    accent: yellow
+    toggle:
+      icon: material/lightbulb
+      name: Switch to light mode
+
+  - scheme: slate
+    primary: teal
+    accent: deep orange
+    toggle:
+      icon: material/lightbulb-outline
+      name: Switch to dark mode
+
+  features:
+  - search.highlight
+  - navigation.tabs
+  - navigation.tabs.sticky
+  - navigation.sections
+  - navigation.footer
+  - navigation.top
+  - navigation.instant
+  - navigation.tracking
+  - navigation.path
+  - content.code.copy
+  - content.footnote.tooltips
+  - toc.integrate
+
+plugins:
+- search:
+    separator: '[\s\-\.]+'
+    prebuild_index: true
+- tags:
+    tags_allowed:
+    - Address
+    - Minecraft
+    - Mods
+    - Rule
+    - SepicServer
+    - Streaming
+    tags_extra_files:
+      compatibility.md:
+      - compatibility
+      changelog.md:
+      - changelog
+
+- table-reader # CSVファイルからテーブルを生成
+
+extra:
+  # copyright
+  generator: false
+
+  # ソーシャルリンク
+  social:
+  - icon: fontawesome/brands/github
+    link: https://github.com/FireSepicHub-14
+  - icon: fontawesome/brands/discord
+    link: https://discord.gg/UK6meefHar
+    name: SepicServer Discord
+
+extra_css:
+- stylesheets/extra.css
+
+markdown_extensions:
+- admonition # 注意書き
+- pymdownx.details # 折りたたみ
+- pymdownx.superfences # コードブロック改善
+- pymdownx.critic
+- pymdownx.caret
+- attr_list # 属性リスト
+- pymdownx.tabbed:
+    # タブ表示
+    alternate_style: true
+- pymdownx.emoji:
+    emoji_index: !!python/name:material.extensions.emoji.twemoji
+    emoji_generator: !!python/name:material.extensions.emoji.to_svg
+- pymdownx.mark # マーカー
+- pymdownx.keys # キーボードキー
+- pymdownx.tilde # 取り消し線
+- md_in_html # HTML内Markdown
+- footnotes
+
+# ルート（言語選択ページ + テスト）
+nav:
+# - Language:
+#   - 日本語 / Japanese: ja/
+#   - English: en/
+- Home: index.md
+- ルールブック📚:
+  - ━━ このカテゴリーは？ ━━: ja/rule/index.md
+  - ━━ 利用規約 ━━: ja/rule/SepicServerGroup_ToU.md
+  - ━━ SNS配信について ━━: ja/rule/sns_streaming.md
+  - ━━ 宣伝行為について ━━: ja/rule/AdvertisingPolicy.md
+  - ━━ 使用可能McMods ━━: ja/rule/Approved-mods.md
+- Sepic Minecraft鯖:
+  - ━━ このカテゴリーは？ ━━: ja/mc_svr/index.md
+  - ━━ サーバーアドレス ━━: ja/mc_svr/ServerAddress.md
+  - ━━ 推奨構成 ━━: ja/mc_svr/RecommendedConfiguration.md

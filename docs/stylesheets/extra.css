@@ -1,0 +1,76 @@
+@charset "UTF-8";
+/* @import url(https://firesepichub-14.github.io/stylesheets/css/h2-tag.css); */
+
+.md-typeset .admonition,
+.md-typeset details {
+    border-width: 0;
+    border-left-width: 4px;
+}
+
+/* 見出し1のスタイル */
+.md-typeset h1 {
+    /*font-size: 24pt;*/
+    font-weight: bold;
+    /* color: #000; */
+    border-bottom: solid 2px #f18b21;
+    padding-bottom: 5px;
+}
+
+/* 見出し2のスタイル */
+.md-typeset h2 {
+    /* color: #000; */
+    border-bottom: 2px dotted #888;
+}
+
+/* 見出し3のスタイル */
+/* .md-typeset h3 { */
+    /* color: #000; */
+    /* border-bottom: 1px dotted #888;
+} */
+.md-typeset h3{
+	border-bottom: 1px solid #888;
+	padding-bottom: 2px;
+}
+
+
+
+/* ページ遷移アニメーション */
+.md-content {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.loading {
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid var(--primary-color);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(0.5rem); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* コードブロック改善 */
+.md-typeset pre > code {
+    border-radius: 0.5rem;
+}
+
+/* テーブル改善 */
+.md-typeset table:not([class]) {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.05);
+}
+
+/* 検索ボックス改善 */
+.md-search__input {
+    border-radius: 5rem;
+}

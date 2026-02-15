@@ -1,0 +1,16 @@
+# MkDocs build output
+site/
+
+# Python
+__pycache__/
+*.py[cod]
+.Python
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+EOF
+
+# Other
+site*.zip
