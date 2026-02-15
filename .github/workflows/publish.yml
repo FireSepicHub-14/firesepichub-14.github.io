@@ -16,4 +16,8 @@ jobs:
       - run: |
           pip install mkdocs-material
           pip install mkdocs-table-reader-plugin
+          pip install mkdocs-encryptcontent-plugin
       - run: mkdocs gh-deploy --force
+        env:
+          # GitHub Secretsに登録した名前（左）を環境変数（右）に割り当てる
+          MY_PAGE_PASSWORD: ${{ secrets.MY_PAGE_PASSWORD }}
