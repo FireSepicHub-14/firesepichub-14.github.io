@@ -46,6 +46,7 @@ plugins:
 - search:
     separator: '[\s\-\.]+'
     prebuild_index: true
+- encryptcontent: {}
 - tags:
     tags_allowed:
     - Address
@@ -112,3 +113,5 @@ nav:
   - ━━ このカテゴリーは？ ━━: ja/mc_svr/index.md
   - ━━ サーバーアドレス ━━: ja/mc_svr/ServerAddress.md
   - ━━ 推奨構成 ━━: ja/mc_svr/RecommendedConfiguration.md
+- AdminPage:
+  - ━━ このカテゴリーは？ ━━: ja/pass_test/index.md
