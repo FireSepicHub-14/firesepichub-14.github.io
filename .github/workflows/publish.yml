@@ -33,13 +33,10 @@ jobs:
           SITE_URL: "https://firesepichub-14.github.io"
           RUN_URL: "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           RAW_COMMIT_MSG: ${{ github.event.head_commit.message }}
-        run: |
           # 16進数カラーコードを10進数に変換しなければ...
           # ミク色:39C5BB --> 3786171
           # テト色:e25577 --> 14832503
-
-
-          # デプロイのステータスに応じたメッセージを作成
+        run: |
           if [ "$STATUS" == "success" ]; then
             TITLE="🚀 MkDocs デプロイ成功！"
             COLOR=3786171
@@ -53,11 +50,7 @@ jobs:
             DEsC_MSG_L2="　　詳細は以下のボタンから確認してください。"
             CONTENT="<@791925284009017344>" s
           fi
-
-          # 組み立て
-          FULL_DESC="${COMMIT}\n${BRANCH}\n${REPO}\n${ACOTR}\n\n${DESC_MSG_L1}\n${DESC_MSG_L2}"
-
-          # JSONからDiscord Webhookのペイロードを作成
+          
           PAYLOAD=$(jq -n \
             --arg title "$TITLE" \
             --argjson color $COLOR \
