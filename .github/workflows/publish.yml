@@ -49,7 +49,7 @@ jobs:
             COLOR=14832503
             DESC_MSG_L1="⚠️ デプロイに失敗しました。"
             DEsC_MSG_L2="　　詳細は以下のボタンから確認してください。"
-            CONTENT="<@791925284009017344>" s
+            CONTENT="<@791925284009017344>"
           fi
           
           # 2. 情報をまとめる
@@ -73,15 +73,12 @@ jobs:
             --arg content "$CONTENT" \
             '{
               "content": $content,
-              "embeds": [
-                {
-                  "title": $title,
-                  "description": $desc,
-                  "color": $color | tonumber,
-                }
-              ],
-              components: [
-                {
+              "embeds": [{
+                "title": $title,
+                "description": $desc,
+                "color": ($color | tonumber)
+              }],
+              components: [{
                   "type": 1,
                   "components": [
                     {
@@ -97,8 +94,7 @@ jobs:
                       "url": $run_url
                     }
                   ]
-                }
-              ]
+              }]
             }')
           
           curl -H "Content-Type: application/json" -X POST -d "$PAYLOAD" "$WEBHOOK_URL"
