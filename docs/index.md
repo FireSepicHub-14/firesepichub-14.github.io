@@ -27,7 +27,7 @@ JapanesePage<br>
 ┃  ┗━ [推奨構成](ja/mc_svr/RecommendedConfiguration.md)<br>
 ┃<br>
 ┣━ ==Linux==<br>
-┃  ┣━ [これはなに?](ja/linux/index.md)
+┃  ┣━ [これはなに?](ja/linux/index.md)<br>
 ┃  ┣━ [Applicationについて](ja/linux/app/index.md)<br>
 ┃  ┣━ [Commandについて](ja/linux/command/index.md)<br>
 
