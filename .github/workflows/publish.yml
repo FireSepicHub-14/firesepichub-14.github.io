@@ -31,5 +31,19 @@ jobs:
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK_URL }}
           status: ${{ job.status }}
-          title: "MkDocs Deployment"
-          description: "Commit: ${{ github.event.head_commit.massage}}"
+          # デプロイの成功/失敗に応じたタイトルを設定
+          title: "${{ job.status == 'success' && '🚀 MkDocs デプロイ成功！' || '⚠️ デプロイ失敗...'}}"
+
+          description: |
+            コミット: ${{ github.event.head_commit.message }}
+            ブランチ: ${{ github.ref }}
+            リポジトリ: ${{ github.repository }}
+            ${{ job.status == 'success'
+              && format('✅ サイトが正常にデプロイされました！ \n サイトが最新の状態に更新されました！')
+              || format('❌デプロイに失敗しました... \nログを確認してください。: https://github.com/{0}/actions/runs/{1}', github.repository, github.run_id)
+            }}
+
+          color_success: "#39C5BB"
+          color_failure: "#e25577"
+          color_cancelled: "#ffe211"
+          image: "https://firesepichub-14.github.io"
