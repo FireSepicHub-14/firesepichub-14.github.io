@@ -37,6 +37,7 @@ jobs:
           # ミク色:39C5BB --> 3786171
           # テト色:e25577 --> 14832503
         run: |
+          # 1. デプロイの成功/失敗に応じてメッセージとカラーを設定
           if [ "$STATUS" == "success" ]; then
             TITLE="🚀 MkDocs デプロイ成功！"
             COLOR=3786171
@@ -51,15 +52,22 @@ jobs:
             CONTENT="<@791925284009017344>" s
           fi
           
-          PAYLOAD=$(jq -n \
-            --arg title "$TITLE" \
-            --argjson color $COLOR \
-            --arg commit "コミット: $RAW_COMMIT_MSG" \
-            --arg branch "ブランチ: ${{ github.ref_name }}" \
-            --arg repo "リポジトリ: ${{ github.repository }}" \
-            --arg actor "アクター: ${{ github.actor }}" \
+          # 2. 情報をまとめる
+          # あらかじめJQを使ってきれいにまとめる
+          DESC_TEST=$(jq -rn \
+            --arg c "コミット: $RAW_COMMIT_MSG" \
+            --arg b "ブランチ: ${{ github.ref_name }}" \
+            --arg r "リポジトリ: ${{ github.repository }}" \
+            --arg a "アクター: ${{ github.actor }}" \
             --arg l1 "$DESC_MSG_L1" \
             --arg l2 "$DESC_MSG_L2" \
+            '$c + "\n" + $b + "\n" + $r + "\n" + $a + "\n\n" + $l1 + "\n" + $l2')
+          
+          # 3. Webhookに送るペイロードを作成
+          PAYLOAD=$(jq -n \
+            --arg title "$TITLE" \
+            --arg color $COLOR \
+            --arg desc "$DESC_TEST" \ 
             --arg site_url "$SITE_URL" \
             --arg run_url "$RUN_URL" \
             --arg content "$CONTENT" \
@@ -68,7 +76,7 @@ jobs:
               "embeds": [
                 {
                   "title": $title,
-                  "description": ($commit + "\n" + $branch + "\n" + $repo + "\n" + $actor + "\n\n" + $l1 + "\n" + $l2),
+                  "description": $desc,
                   "color": $color | tonumber,
                   ],
                   components: [
