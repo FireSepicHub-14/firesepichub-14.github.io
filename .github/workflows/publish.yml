@@ -32,16 +32,12 @@ jobs:
           STATUS: ${{ job.status }} # ジョブのステータスを取得
           SITE_URL: "https://firesepichub-14.github.io"
           RUN_URL: "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          RAW_COMMIT_MSG: ${{ github.event.head_commit.message }}
         run: |
-          # 16進数カラーコードを10進数に変換(#抜きで)
-          # HEX_SUCCESS="39C5BB" # ミク色  --> 3786171
-          # HEX_FAILURE="e25577" # テト色  --> 14832503
+          # 16進数カラーコードを10進数に変換しなければ...
+          # ミク色:39C5BB --> 3786171
+          # テト色:e25577 --> 14832503
 
-          # 基本情報を定義
-          COMMIT= "コミット: ${{ github.event.head_commit.message }}"
-          BRANCH= "ブランチ: ${{ github.ref }}"
-          REPO= "リポジトリ: ${{ github.repository }}"
-          ACTOR= "実行者: ${{ github.actor }}"
 
           # デプロイのステータスに応じたメッセージを作成
           if [ "$STATUS" == "success" ]; then
@@ -64,17 +60,22 @@ jobs:
           # JSONからDiscord Webhookのペイロードを作成
           PAYLOAD=$(jq -n \
             --arg title "$TITLE" \
+            --argjson color $COLOR \
+            --arg commit "コミット: $RAW_COMMIT_MSG" \
+            --arg branch "ブランチ: ${{ github.ref_name }}" \
+            --arg repo "リポジトリ: ${{ github.repository }}" \
+            --arg actor "アクター: ${{ github.actor }}" \
+            --arg l1 "$DESC_MSG_L1" \
+            --arg l2 "$DESC_MSG_L2" \
             --arg site_url "$SITE_URL" \
             --arg run_url "$RUN_URL" \
-            --arg desc "$FULL_DESC" \
             --arg content "$CONTENT" \
-            --argjson color $COLOR \
             '{
               "content": $content,
               "embeds": [
                 {
                   "title": $title,
-                  "description": $desc,
+                  "description": ($commit + "\n" + $branch + "\n" + $repo + "\n" + $actor + "\n\n" + $l1 + "\n" + $l2),
                   "color": $color | tonumber,
                   ],
                   components: [
