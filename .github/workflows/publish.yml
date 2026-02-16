@@ -3,17 +3,33 @@ on:
   push:
     branches:
       - main  # あなたのメインブランチ名に合わせてください
+
 permissions:
   contents: write
+
 jobs:
   deploy:
+    # デプロイ環境
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
+          # Pythonのバージョンを指定
           python-version: 3.x
-      - run: |
+      - run: | # MkDocsと必要なプラグインをインストール
           pip install mkdocs-material
           pip install mkdocs-table-reader-plugin
+
+      # MkDocsを使用してサイトをビルドし、GitHub Pagesにデプロイ
       - run: mkdocs gh-deploy --force
+
+      # Discord Webhookを使用してデプロイ完了を通知
+      - name: Discord Notification
+        uses: sarisia/discord-webhook@v1
+        if: always()  # デプロイが失敗しても通知を送る
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          status: ${{ job.status }}
+          title: "MkDocs Deployment"
+          description: "Commit: ${{ github.event.head_commit.massage}}"
