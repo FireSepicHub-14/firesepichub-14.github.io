@@ -49,6 +49,9 @@ plugins:
 - tags:
     tags_allowed:
     - Address
+    - App
+    - Command
+    - Linux
     - Minecraft
     - Mods
     - Rule
@@ -112,3 +115,11 @@ nav:
   - ━━ このカテゴリーは？ ━━: ja/mc_svr/index.md
   - ━━ サーバーアドレス ━━: ja/mc_svr/ServerAddress.md
   - ━━ 推奨構成 ━━: ja/mc_svr/RecommendedConfiguration.md
+- Linux系の話:
+  - このカテゴリーは？: ja/linux/index.md
+  - ━━ アプリケーション ━━:
+    -  目次: ja/linux/app/index.md
+    -  nano: ja/linux/app/nano.md
+  - ━━ コマンド ━━:
+    -  目次: ja/linux/command/index.md
+    -  cd: ja/linux/command/cd.md
