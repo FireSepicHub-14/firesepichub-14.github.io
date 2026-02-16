@@ -26,7 +26,7 @@ jobs:
 
       # Discord Webhookを使用してデプロイ完了を通知
       - name: Discord Notification
-        uses: sarisia/discord-webhook@v1
+        uses: sarisia/actions-status-discord@v1
         if: always()  # デプロイが失敗しても通知を送る
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK_URL }}
