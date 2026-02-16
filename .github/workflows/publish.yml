@@ -42,23 +42,28 @@ jobs:
           if [ "$STATUS" == "success" ]; then
             TITLE="🚀 MkDocs デプロイ成功！"
             COLOR=$((16#$HEX_SUCCESS))
-            DESC_MSG= "✅ サイトが正常にデプロイされました！
-          サイトが最新の状態に更新されました！"
+            DESC_MSG_L1="✅ サイトが正常にデプロイされました！"
+            DESC_MSG_L2="　　サイトが最新の状態に更新されました！"
             CONTENT=""
           else
             TITLE="❌ MkDocs デプロイ失敗..."
             COLOR=$((16#$HEX_FAILURE))
-            DESC_MSG="⚠️ デプロイに失敗しました。
-          詳細は以下のボタンから確認してください。"
+            DESC_MSG_L1="⚠️ デプロイに失敗しました。"
+            DEsC_MSG_L2="　　詳細は以下のボタンから確認してください。"
             CONTENT="<@791925284009017344>" s
           fi
 
           # JSONからDiscord Webhookのペイロードを作成
           PAYLOAD=$(jq -n \
             --arg title "$TITLE" \
-            --arg desc "コミット: ${{ github.event.head_commit.message }}" \nブランチ: ${{ github.ref }} \nリポジトリ: ${{ github.repository }} \n実行者: ${{ github.actor }} \n\n$DESC_MSG" \
             --arg site_url "$SITE_URL" \
             --arg run_url "$RUN_URL" \
+            --arg commit "コミット: ${{ github.event.head_commit.message }}" \
+            --arg branch "ブランチ: ${{ github.ref }}" \
+            --arg repo "リポジトリ: ${{ github.repository }}" \
+            --arg actor "実行者: ${{ github.actor }}" \
+            --arg l1 "$DESC_MSG_L1" \
+            --arg l2 "$DESC_MSG_L2" \
             --arg content "$CONTENT" \
             --argjson color $COLOR \
             '{
@@ -66,7 +71,8 @@ jobs:
               "embeds": [
                 {
                   "title": $title,
-                  "description": $desc,
+                  # コミットメッセージ、ブランチ、リポジトリ、実行者を説明文に含める
+                  "description": ($commit + "\n" + $branch + "\n" + $repo + "\n" + $actor + "\n\n" + $l1 + "\n" + $l2),
                   "color": $color | tonumber,
                   ],
                   components: [
