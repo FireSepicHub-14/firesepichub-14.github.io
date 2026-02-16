@@ -25,6 +25,9 @@ JapanesePage<br>
 ┣━ ==Sepic Minecraft鯖==<br>
 ┃  ┣━ [サーバーアドレス](ja/mc_svr/ServerAddress.md)<br>
 ┃  ┗━ [推奨構成](ja/mc_svr/RecommendedConfiguration.md)<br>
-
-
+┃<br>
+┣━ ==Linux==<br>
+┃  ┣━ [これはなに?](ja/linux/index.md)
+┃  ┣━ [Applicationについて](ja/linux/app/index.md)<br>
+┃  ┣━ [Commandについて](ja/linux/command/index.md)<br>
 
