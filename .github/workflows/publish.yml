@@ -67,7 +67,7 @@ jobs:
           PAYLOAD=$(jq -n \
             --arg title "$TITLE" \
             --arg color $COLOR \
-            --arg desc "$DESC_TEST" \ 
+            --arg desc "$DESC_TEST" \
             --arg site_url "$SITE_URL" \
             --arg run_url "$RUN_URL" \
             --arg content "$CONTENT" \
