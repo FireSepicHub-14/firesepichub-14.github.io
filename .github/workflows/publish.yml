@@ -55,10 +55,10 @@ jobs:
           # 2. 情報をまとめる
           # あらかじめJQを使ってきれいにまとめる
           DESC_TEST=$(jq -rn \
-            --arg c "コミット: $RAW_COMMIT_MSG" \
-            --arg b "ブランチ: ${{ github.ref_name }}" \
-            --arg r "リポジトリ: ${{ github.repository }}" \
-            --arg a "アクター: ${{ github.actor }}" \
+            --arg c "コミット：　$RAW_COMMIT_MSG" \
+            --arg b "ブランチ：　 ${{ github.ref_name }}" \
+            --arg r "リポジトリ：　${{ github.repository }}" \
+            --arg a "アクター：　${{ github.actor }}" \
             --arg l1 "$DESC_MSG_L1" \
             --arg l2 "$DESC_MSG_L2" \
             '$c + "\n" + $b + "\n" + $r + "\n" + $a + "\n\n" + $l1 + "\n" + $l2')
@@ -87,4 +87,4 @@ jobs:
               }]
             }')
           
-          curl -H "Content-Type: application/json" -X POST -d "$PAYLOAD" "$WEBHOOK_URL" --fail --verbose
+          curl -H "Content-Type: application/json" -X POST -d "$PAYLOAD" "$WEBHOOK_URL?wait=true" --fail --verbose
